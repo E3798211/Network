@@ -34,25 +34,21 @@ int StartClient()
 
     // Sending!
 
-/*
-    char message[1024] = "Hey, there!";
-    char buf[1024] = {};
-
-    // std::cout << "THIS MOMENT: " << send(client, message, sizeof(message), 0);
-    // recv(client, buf,     sizeof(buf),     0);
-*/
-
     char message[MAX_MSG_LEN]   = {};
     char  answer[MAX_MSG_LEN]   = {};
 
+    printf("\n\nEnter your message\n\n");
+
     while(true)
     {
+        printf("c> ");
         fgets(message, MAX_MSG_LEN, stdin);
+        printf("\n");
 
         send(client, message, MAX_MSG_LEN, 0);
         recv(client, answer,  MAX_MSG_LEN, 0);
 
-        printf("> %s\n", answer);
+        printf("s> %s\n", answer);
     }
 
     return CLIENT::OK;

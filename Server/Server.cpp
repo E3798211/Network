@@ -82,12 +82,17 @@ int StartServer()
         }
         else
         {
-            recv(next_socket, message, MAX_BUFF_LEN, 0);
-            printf("> %s\n",  message);
+            while(true)
+            {
+                recv(next_socket, message, MAX_BUFF_LEN, 0);
+                printf("c> %s\n",  message);
 
-            fgets(message, MAX_BUFF_LEN, stdin);
+                printf("s> ");
+                fgets(message, MAX_BUFF_LEN, stdin);
+                printf("\n");
 
-            send(next_socket, message, MAX_BUFF_LEN, 0);
+                send(next_socket, message, MAX_BUFF_LEN, 0);
+            }
         }
 
         close(next_socket);

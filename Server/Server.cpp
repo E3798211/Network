@@ -1,19 +1,7 @@
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <sys/unistd.h>
-#include <netinet/in.h>
+#include "Server.h"
 
-#include <iostream>
-#include <stdio.h>
-
-#include <signal.h>
-
-#include "Server/Server.h"
-
-int main()
+int StartServer()
 {
-    /*
-
     // Opening socket
 
     int server = socket(AF_INET, SOCK_STREAM, 0);
@@ -22,7 +10,7 @@ int main()
         printf("\x1b[31m"
                 "Failed to open server socket."
                 "\n\x1b[0m");
-        exit(-1);
+        return SERVER::ERROR;
     }
     else
     {
@@ -46,7 +34,7 @@ int main()
         perror("Error");
 
         close(server);
-        exit(-1);
+        return SERVER::ERROR;
     }
     else
     {
@@ -63,7 +51,7 @@ int main()
         perror("Error");
 
         close(server);
-        exit(-1);
+        return SERVER::ERROR;
     }
     else
     {
@@ -85,7 +73,7 @@ int main()
                 "\n\x1b[0m");
 
             close(server);
-            exit(-1);
+            return SERVER::ERROR;
         }
         else
         {
@@ -96,7 +84,5 @@ int main()
 
     close(next_socket);
 
-    */
-
-    StartServer();
+    return SERVER::OK;
 }

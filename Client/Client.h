@@ -28,6 +28,8 @@ namespace CLIENT
     };
 };
 
+const int MAX_MSG_LEN   = 1024;
+
 /// Starts client
 int StartClient();
 

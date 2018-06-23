@@ -27,13 +27,33 @@ int StartClient()
     if( connect(client, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0 )
     {
         perror("connect");
-        exit(2);
+
+        // close(client);
+        // return CLIENT::ERROR;
     }
 
-    char message[1024] = "Hey, there!\n";
+    // Sending!
+
+/*
+    char message[1024] = "Hey, there!";
     char buf[1024] = {};
 
-    std::cout << "THIS MOMENT: " << send(client, message, sizeof(message), 0);
+    // std::cout << "THIS MOMENT: " << send(client, message, sizeof(message), 0);
     // recv(client, buf,     sizeof(buf),     0);
+*/
 
+    char message[MAX_MSG_LEN]   = {};
+    char  answer[MAX_MSG_LEN]   = {};
+
+    while(true)
+    {
+        fgets(message, MAX_MSG_LEN, stdin);
+
+        send(client, message, MAX_MSG_LEN, 0);
+        recv(client, answer,  MAX_MSG_LEN, 0);
+
+        printf("> %s\n", answer);
+    }
+
+    return CLIENT::OK;
 }

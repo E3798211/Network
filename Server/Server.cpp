@@ -59,12 +59,13 @@ int StartServer()
     }
     else
     {
-        DBG printf("Server is listening. Max queue length: %d\n", MAX_QUEUE_LEN);
+        DBG printf("Server is listening.\n\n", MAX_QUEUE_LEN);
     }
 
     // Processing incoming messages
 
-    char message_buffer[MAX_BUFF_LEN] = {};
+    char message[MAX_BUFF_LEN]  = {};
+    char  answer[MAX_BUFF_LEN]  = {};
 
     int next_socket = -1;
     while(true)
@@ -81,9 +82,15 @@ int StartServer()
         }
         else
         {
-            recv(next_socket, message_buffer, MAX_BUFF_LEN, 0);
-            printf("Message: '%s'\n", message_buffer);
+            recv(next_socket, message, MAX_BUFF_LEN, 0);
+            printf("> %s\n",  message);
+
+            fgets(message, MAX_BUFF_LEN, stdin);
+
+            send(next_socket, message, MAX_BUFF_LEN, 0);
         }
+
+        close(next_socket);
     }
 
     close(next_socket);

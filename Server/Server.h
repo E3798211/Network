@@ -28,8 +28,8 @@ namespace SERVER
     };
 };
 
-const int MAX_QUEUE_LEN = 1000;
-const int MAX_BUFF_LEN  = 1000;
+const int MAX_QUEUE_LEN = 1024;
+const int MAX_BUFF_LEN  = 1024;
 
 /// Starts listening server
 int StartServer();

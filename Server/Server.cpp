@@ -21,8 +21,8 @@ int StartServer()
 
     sockaddr_in server_addr = {};
     server_addr.sin_family  = AF_INET;
-    server_addr.sin_port    = 8888;
-    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port    = htons(3000);
+    inet_pton(AF_INET, "192.168.10.102", &(server_addr.sin_addr));
 
     // Binding
 
@@ -39,6 +39,10 @@ int StartServer()
     else
     {
         DBG printf("Server socket binded successfully\n");
+
+        char str[16] = {};
+        inet_ntop(AF_INET, &(server_addr.sin_addr), str, INET_ADDRSTRLEN);
+        printf("Address: %s\n", str);
     }
 
     // Listening
